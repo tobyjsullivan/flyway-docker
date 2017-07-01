@@ -10,6 +10,6 @@ RUN tar -xzf /flyway.tar.gz -C /opt/flyway && \
 VOLUME ["/sql"]
 
 WORKDIR /
-ENTRYPOINT ["flyway"]
+ENTRYPOINT ["flyway", "-locations=filesystem:/sql"]
 CMD ["--help"]
 
