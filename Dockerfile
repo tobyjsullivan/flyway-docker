@@ -4,9 +4,12 @@ ADD https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/4.2.0/flyway-
 
 RUN mkdir -p /opt/flyway
 RUN tar -xzf /flyway.tar.gz -C /opt/flyway && \
-    rm /flyway.tar.gz
+    rm /flyway.tar.gz && \
+    ln -s /opt/flyway/flyway-4.2.0/flyway /usr/local/bin/flyway
 
-WORKDIR /opt/flyway/flyway-4.2.0
-ENTRYPOINT ["./flyway"]
+VOLUME ["/sql"]
+
+WORKDIR /
+ENTRYPOINT ["flyway"]
 CMD ["--help"]
 
